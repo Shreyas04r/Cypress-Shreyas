@@ -1,21 +1,22 @@
-// Scenario 1: Validate Image, News links and Search text functionality
-// Description: User has to navigate to the mojeek website, search for text - “How can we contribute to a greener planet?”
-// and look out for this link, across all the pages from search result - https://earth.org/6-ways-to-go-greener-in-food-production/
+// Scenario 2:
+// Visit the Ecosia blogs webpage and navigate to the "Countries" section. Retrieve the amounts listed next to each country,
+// calculate their total sum, and compare it with the "Paid out to projects" value displayed on the website.
 
-// Validation Points:
-// Open any browser
-// User navigates to the website - https://www.mojeek.com/
-// Click on Images link and Verify if user is navigated to this URL - Image Search | Mojeek
-// Click on News and Verify if user is navigated to this URL - News - Mojeek
-// In the Search text box, Input - How can we contribute to a greener planet?
-// To look out for this link, across all the pages from search result - https://earth.org/6-ways-to-go-greener-in-food-production/
+// Validation Steps:
+// 1. Open the website: https://blog.ecosia.org/ecosia-financial-reports-tree-planting-receipts/).
+// 2. Locate the "Countries" section.
+// 3. Extract the amounts associated with each country.
+// 4. Compute the total sum of these amounts.
+// 5. Compare the computed total with the "Paid out to projects" value displayed on the website.
 
-describe('Mojeek Navigation and Search', () => {
-  it('Should navigate to the homepage', () => {});
+describe('Ecosia Countries Sum Verification', () => {
+  it('calculates the sum of country counts and verifies it', () => {});
+  cy.visit('https://blog.ecosia.org/ecosia-financial-reports-tree-planting-receipts/')
+  cy.get('.v-country__header__amount').each(($x)=>{
+   let value= $x.text();
+   let amount=Number(value)
 
-  it('Should navigate to the Images section', () => {});
-
-  it('Should navigate to the News section', () => {});
-
-  it('Should perform a search and verify presence of specific link', () => {});
+   expect(amount).to.equal('have.value','1,917,511')
+  
+  })
 });
